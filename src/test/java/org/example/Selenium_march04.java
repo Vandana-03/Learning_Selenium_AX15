@@ -23,9 +23,9 @@ public class Selenium_march04 {
         driver.get("https://app.vwo.com/#/login");
         driver.findElement(By.xpath("//input[@type='email']")).sendKeys("admin@admin.com");
         driver.findElement(By.xpath("//input[@type='password']")).sendKeys("admin");
-        driver.findElement(By.xpath("//button[@id='js-login-btn']")).click();
+        //driver.findElement(By.xpath("//button[@id='js-login-btn']")).click();
 
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@id='js-login-btn']"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@id='js-login-btn']"))).click();
 
 
 
