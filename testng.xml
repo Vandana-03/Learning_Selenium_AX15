@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Vandana_study/intelij_projects/SeleniumATB15x/LearnSeleniumATB15x">
+        <classes>
+            <class name="org.example.SeleniumTask_01"><methods>
+            <include name="Katalon_launch"/>
+        </methods>
+        </class>
+            <class name="org.example.Selenium_orange_hrm"><methods>
+            <include name="test_hrm"/>
+        </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
