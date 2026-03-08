@@ -11,6 +11,12 @@
             <include name="test_hrm"/>
         </methods>
             </class>
+
+            <class name="org.example.seleniumTask27Feb"><methods>
+                <include name="tta_bank"/>
+            </methods>
+            </class>
+
         </classes>
     </test>
 </suite>
