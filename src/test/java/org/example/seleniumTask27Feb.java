@@ -57,7 +57,7 @@ public class seleniumTask27Feb {
         String balance_amount=driver.findElement(By.xpath("//h3[@class='mt-2 text-3xl font-bold']")).getText();
         System.out.println(balance_amount);
         Assert.assertEquals(balance_amount,"$45,000.00");
-
+        driver.quit();
 
     }
 

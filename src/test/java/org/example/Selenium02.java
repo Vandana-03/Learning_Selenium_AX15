@@ -1,10 +1,14 @@
 package org.example;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverInfo;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class Selenium02 {
     public static void main(String[] args) {
@@ -19,6 +23,9 @@ public class Selenium02 {
 
         RemoteWebDriver d9=new ChromeDriver();
         d9=new FirefoxDriver();
+//
+//        WebDriver wait=new WebDriverWait(driver, Duration.ofSeconds(3));
+
 
 
     }
