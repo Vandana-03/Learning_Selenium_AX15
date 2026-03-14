@@ -1,5 +1,4 @@
-package org.example;
-import static org.assertj.core.api.Assertions.*;
+package Tasks;
 
 import io.qameta.allure.*;
 import org.openqa.selenium.By;

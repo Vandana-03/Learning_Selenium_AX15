@@ -1,25 +1,26 @@
-package org.example;
+package Tasks;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.security.Key;
 import java.time.Duration;
 
-public class Selenium_bookflight {
+public class Selenium_bookflight_task_march9 {
 
     @Test
     public void book_ticket() throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
+        ChromeOptions options=new ChromeOptions();
+        options.addArguments("--disable-blink-features=AutomationControlled");
+        WebDriver driver = new ChromeDriver(options);
         driver.get("https://www.booking.com/");
         driver.manage().window().maximize();
 
