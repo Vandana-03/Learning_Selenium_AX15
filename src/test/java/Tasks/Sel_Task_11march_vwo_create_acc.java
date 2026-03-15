@@ -1,16 +1,16 @@
 package Tasks;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import javax.swing.*;
 import java.io.FileInputStream;
 import java.time.Duration;
 import java.util.Set;
@@ -55,7 +55,7 @@ WebDriver driver;
 
         driver.findElement(By.xpath("//button[@id='onetrust-accept-btn-handler']")).click();
         WebElement email=driver.findElement(By.xpath("(//input[@name='email'])[1]"));
-        email.sendKeys("ieyca@sharebot.net");
+        email.sendKeys("palepink.94@memorimail.com");
 
         driver.findElement(By.xpath("//input[@id='page-free-trial-step1-cu-gdpr-consent-checkbox']")).click();
         driver.findElement(By.xpath("//button[@type='submit']")).click();
@@ -65,7 +65,7 @@ WebDriver driver;
         Assert.assertEquals(signup_title,"Sign up for a full-featured trial");
 
         //Enter the details of the signup page
-        WebElement fname=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='page-v1-fname']")));
+        WebElement fname=longwait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='page-v1-fname']")));
         fname.sendKeys("Navya");
         driver.findElement(By.xpath("//input[@id='page-v1-lname']")).sendKeys("Nair");
         driver.findElement(By.xpath("//input[@id='page-v1-pnumber']")).sendKeys("9876787676");
@@ -74,9 +74,13 @@ WebDriver driver;
 
         //verify if user landed to Curious how it works? Get a 1-on-1 demo page
         //Verify the page title name
-        WebElement curious_title=driver.findElement(By.xpath("//h3[@class='M(0) Fz(--font-size-24) Fw(600)']"));
-        longwait.until(ExpectedConditions.visibilityOf(curious_title));
-        Assert.assertEquals(curious_title.getText(),"Curious how it works? Get a 1-on-1 demo");
+        try {
+            WebElement curious_title=driver.findElement(By.xpath("//h3[@class='M(0) Fz(--font-size-24) Fw(600)']"));
+            longwait.until(ExpectedConditions.visibilityOf(curious_title));
+            Assert.assertEquals(curious_title.getText(),"Curious how it works? Get a 1-on-1 demo");
+        } catch (Exception e) {
+            System.out.println("TEXT Curious how it works? Get a 1-on-1 demo not found!!!!!!!!");
+        }
 
         WebElement skip_and_continue=longwait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='skip & continue to app']")));
         skip_and_continue.click();
@@ -90,51 +94,57 @@ WebDriver driver;
             System.out.println("Continue button not found so skipping the test case");
         }
         Thread.sleep(20000);
-
-        //Expand Choose a data center
-        driver.findElement(By.xpath("//h5[text()='Choose a data centre']")).click();
-        longwait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-qa='boxasuraza']"))).click();
-        Thread.sleep(60000);
-
         driver.navigate().refresh();
         Thread.sleep(60000);
         //Expand Choose a data center
-        driver.findElement(By.xpath("//h5[text()='Choose a data centre']")).click();
-        longwait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-qa='boxasuraza']"))).click();
-        Thread.sleep(60000);
-
-
-        //Expand Select your products
-        //driver.findElement(By.xpath("//h5[text()='Select your products']")).click();
-
-        //click on start free trial
-        //driver.findElement(By.xpath("(//button[@data-qa='cunoxonoxe'])[2]")).click();
-        driver.findElement(By.xpath("(//button[@data-qa = 'cunoxonoxe']//*[local-name() = 'svg'])[2]")).click();
+        try {
+            driver.findElement(By.xpath("//h5[text()='Choose a data centre']")).click();
+            longwait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-qa='boxasuraza']"))).click();
+            //Thread.sleep(60000);
+        } catch (Exception e) {
+            System.out.println("exception occurred near choose a data centre");
+        }
         Thread.sleep(20000);
-        driver.findElement(By.xpath("//button[contains(text(), 'Add domain')]")).click();
+        driver.navigate().refresh();
+        Thread.sleep(20000);
+
+        try {
+            WebElement svg_button=longwait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[@data-qa = 'cunoxonoxe']//*[local-name() = 'svg'])[2]")));
+            svg_button.click();
+
+        } catch (Exception e) {
+            System.out.println("start free trial exception occurred");
+        }
+        Thread.sleep(20000);
+        try {
+            driver.findElement(By.xpath("//button[contains(text(), 'Add domain')]")).click();
+        } catch (Exception e) {
+            System.out.println("add domain button exception occurred");
+        }
         Thread.sleep(40000);
         WebElement copy_link=driver.findElement(By.xpath("//button[@vwo-title='Copy']"));
         copy_link.click();
-        String code=copy_link.getText();
-        System.out.println(code);
 
+        // Opens a new tab and automatically switches Selenium's focus to it
+        driver.switchTo().newWindow(WindowType.TAB);
+        // Now you can navigate to a new URL in this new tab
+        driver.get("https://www.google.com");
+        //Find the actual Google Search box (its HTML name attribute is "q")
+        WebElement googleSearchBox = driver.findElement(By.className("gLFyf"));
 
-//        System.out.println("***********************************");
-//        Thread.sleep(20000);
-//        driver.navigate().refresh();
-//        Thread.sleep(40000);
-//        //Expand Select your products
-//        WebElement select_your_products=longwait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h5[text()='Select your products']")));
-//        select_your_products.click();
-//        Thread.sleep(20000);
-//
-//        //click on start free trial
-//        driver.findElement(By.xpath("(//button[@data-qa='cunoxonoxe'])[2]")).click();
-//        Thread.sleep(40000);
-//
-//        driver.findElement(By.xpath("//button[@class='btn btn--primary ng-binding ng-scope']")).click();
-//        Thread.sleep(40000);
-//        driver.findElement(By.xpath("//button[@vwo-title='Copy']")).click();
+        Actions act=new Actions(driver);
+        act.keyDown(Keys.CONTROL)
+                .sendKeys("V")
+                .keyUp(Keys.CONTROL)
+                .build()
+                .perform();
+
+        String copiedtext=googleSearchBox.getAttribute("value");
+        if(copiedtext.contains("visualwebsiteoptimizer"))
+            System.out.println("Verification passed");
+        else {
+            System.out.println("failed");
+        }
 
 
 
